@@ -1,268 +1,229 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Zufan Alemu — Portfolio</title>
-  <meta name="description" content="Portfolio of Zufan Alemu — Computer Science student at Jimma University and Certified Graphic Designer." />
-  <link rel="icon" type="image/png" href="portfolio.png" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Zufan Alemu — Portfolio</title>
+<meta name="description" content="Portfolio of Zufan Alemu — Computer Science student at Jimma University and Certified Graphic Designer." />
+<link rel="icon" type="image/png" href="portfolio.png" />
 
-  <style>
-    :root {
-      --bg: #0b0c10;
-      --panel: #111317;
-      --text: #e8eaf0;
-      --muted: #acb2c0;
-      --accent: #7c5cff;
-      --accent-2: #22c55e;
-      --border: #222632;
-      --shadow: 0 10px 30px rgba(0,0,0,.25);
-      --card-radius: 16px;
-    }
-    .light {
-      --bg: #f6f7fb;
-      --panel: #ffffff;
-      --text: #0f1222;
-      --muted: #5b6275;
-      --accent: #5b47ff;
-      --accent-2: #16a34a;
-      --border: #e8eaf0;
-      --shadow: 0 10px 20px rgba(17,19,23,.06);
-    }
+<style>
+:root {
+  --bg: #87CEEB; /* Soft Sky Blue */
+  --panel: rgba(255,255,255,0.85);
+  --text: #0f1222;
+  --muted: #4a4a4a;
+  --accent: #7c5cff;
+  --accent-2: #22c55e;
+  --border: rgba(0,0,0,0.15);
+  --shadow: 0 12px 35px rgba(0,0,0,.15);
+  --radius: 20px;
+}
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      overflow-x: hidden;
-      position: relative;
-      min-height: 100vh;
-    }
+.dark {
+  --bg: #0b0c10;
+  --panel: rgba(17,19,23,0.85);
+  --text: #f3f4f9;
+  --muted: #c8cad5;
+  --accent: #7c5cff;
+  --accent-2: #22c55e;
+  --border: rgba(255,255,255,0.2);
+  --shadow: 0 15px 40px rgba(0,0,0,.3);
+}
 
-    /* Animated gradient background */
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: linear-gradient(-45deg, #0f2027, #203a43, #2c5364, #1a1a2e);
-      background-size: 400% 400%;
-      animation: gradientFlow 18s ease infinite;
-      z-index: -3;
-    }
-    @keyframes gradientFlow {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+  background: var(--bg);
+  color: var(--text);
+  min-height:100vh;
+  line-height:1.7;
+  transition: background 0.4s, color 0.4s;
+}
 
-    /* Glowing particle effect */
-    canvas#particles {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      z-index: -2;
-      pointer-events: none;
-    }
+/* Header */
+header {
+  position: sticky; top:0; z-index:50;
+  background: rgba(255,255,255,0.6);
+  backdrop-filter: blur(10px);
+  border-bottom:1px solid var(--border);
+}
+.dark header { background: rgba(11,12,16,0.6); }
 
-    header { 
-      position: sticky; top: 0; z-index: 50; 
-      background: rgba(11,12,16,0.6); 
-      backdrop-filter: blur(10px); 
-      border-bottom: 1px solid var(--border); 
-    }
-    .light header { background: rgba(255,255,255,.8); }
-    .container { width: min(1100px, 92%); margin: 0 auto; }
-    .nav { display: flex; justify-content: space-between; align-items: center; height: 64px; }
-    .brand { font-weight: 800; font-size: 1.2rem; }
-    .nav-links { display: flex; gap: 20px; align-items: center; }
-    .nav a { color: var(--text); opacity: 0.9; text-decoration: none; transition: opacity 0.3s; }
-    .nav a:hover { opacity: 1; }
-    .nav .btn { padding: 8px 14px; border: 1px solid var(--border); border-radius: 999px; cursor: pointer; }
+.container { width:min(1100px,92%); margin:0 auto; }
+.nav { display:flex; justify-content:space-between; align-items:center; height:70px; }
+.brand { font-weight:900; font-size:1.5rem; letter-spacing:1px; }
+.nav-links { display:flex; gap:22px; align-items:center; }
+.nav a {
+  color:var(--text); opacity:0.9; text-decoration:none; font-weight:500; transition:0.3s;
+}
+.nav a:hover { color:var(--accent); opacity:1; }
+.btn { padding:9px 16px; border-radius:999px; border:1px solid var(--border); cursor:pointer; font-weight:600; }
 
-    /* Hero */
-    .hero { display: grid; grid-template-columns: 1.2fr .8fr; gap: 36px; padding: 72px 0; align-items: center; }
-    .hero-card { background: var(--panel); border: 1px solid var(--border); border-radius: 24px; padding: 36px; box-shadow: var(--shadow); }
-    .kicker { font-size: .85rem; color: var(--muted); text-transform: uppercase; }
-    h1 { font-size: clamp(2rem, 4vw, 3rem); margin: 12px 0; }
-    .subtitle { color: var(--muted); font-size: 1.1rem; }
-    .badge-row { display: flex; gap: 10px; flex-wrap: wrap; margin: 16px 0; }
-    .badge { background: rgba(124,92,255,.15); padding: 6px 12px; border-radius: 999px; font-size: .9rem; }
-    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 20px; }
-    .btn-primary { background: var(--accent); color: #fff; padding: 12px 18px; border-radius: 12px; font-weight: 600; border: none; }
-    .btn-ghost { border: 1px solid var(--border); padding: 12px 18px; border-radius: 12px; font-weight: 600; background: transparent; color: var(--text); }
-    .hero-aside { text-align: center; }
-    .hero-aside img { width: 200px; height: 200px; border-radius: 50%; border: 4px solid var(--accent); object-fit: cover; }
+/* Hero */
+.hero {
+  display:grid; grid-template-columns:1.3fr 1fr; gap:50px; padding:100px 0; align-items:center;
+}
+.hero-card {
+  background: var(--panel);
+  border-radius: var(--radius);
+  padding: 40px;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(4px);
+  border:1px solid var(--border);
+  transition: transform 0.3s;
+}
+.hero-card:hover { transform: translateY(-5px); }
+.kicker { font-size:0.95rem; color:var(--muted); text-transform:uppercase; letter-spacing:1px; }
+h1 { font-size:clamp(2.5rem,5vw,3.5rem); margin:15px 0; }
+.subtitle { color:var(--muted); font-size:1.2rem; }
+.badge-row { display:flex; gap:12px; flex-wrap:wrap; margin:18px 0; }
+.badge { background: rgba(124,92,255,0.2); padding:7px 14px; border-radius:999px; font-size:0.95rem; font-weight:500; }
+.hero-actions { display:flex; gap:14px; flex-wrap:wrap; margin-top:25px; }
+.btn-primary { background:var(--accent); color:#fff; padding:14px 22px; border-radius:14px; border:none; font-weight:600; transition: transform 0.2s; }
+.btn-primary:hover { transform:scale(1.05); }
+.btn-ghost { border:1px solid var(--border); padding:14px 22px; border-radius:14px; font-weight:600; background:transparent; color:var(--text); transition: transform 0.2s; }
+.btn-ghost:hover { transform:scale(1.05); }
 
-    /* Sections */
-    .section { padding: 72px 0; }
-    h2 { font-size: clamp(1.6rem, 2.5vw, 2.2rem); margin-bottom: 20px; }
+.hero-aside { text-align:center; }
+.hero-aside img { width:280px; height:280px; border-radius:50%; border:5px solid var(--accent); object-fit:cover; transition: transform 0.3s; }
+.hero-aside img:hover { transform:scale(1.05); }
 
-    /* Skills */
-    .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 18px; }
-    .card { grid-column: span 4; background: var(--panel); border: 1px solid var(--border); border-radius: var(--card-radius); padding: 20px; box-shadow: var(--shadow); }
-    .card h3 { margin-bottom: 10px; }
-    .muted { color: var(--muted); }
-    .bar { height: 10px; border-radius: 999px; background: #1b1f2a; overflow: hidden; border: 1px solid var(--border); }
-    .light .bar { background: #eef0f6; }
-    .bar span { display: block; height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-2)); }
+/* Sections */
+.section { padding:80px 0; }
+h2 { font-size:clamp(2rem,3vw,2.5rem); margin-bottom:25px; text-align:center; }
 
-    /* Certificates */
-    .certificates { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
-    .certificates img { border-radius: 12px; box-shadow: var(--shadow); transition: transform .3s; }
-    .certificates img:hover { transform: scale(1.05); }
+#about p {
+  font-size:1.18rem; line-height:1.9; background: var(--panel); padding:28px; border-radius:var(--radius); box-shadow:var(--shadow); max-width:75ch; margin:0 auto; text-align:justify;
+}
 
-    footer { text-align: center; padding: 24px; color: var(--muted); border-top: 1px solid var(--border); }
+.grid { display:grid; grid-template-columns:repeat(12,1fr); gap:20px; }
+.card { grid-column:span 4; background:var(--panel); border-radius:var(--radius); padding:22px; box-shadow:var(--shadow); transition: transform 0.3s; border:1px solid var(--border); }
+.card:hover { transform:translateY(-5px); }
+.card h3 { margin-bottom:12px; }
+.muted { color:var(--muted); }
+.bar { height:12px; border-radius:999px; background:#d1d5db; overflow:hidden; border:1px solid var(--border); }
+.bar span { display:block; height:100%; background:linear-gradient(90deg,var(--accent),var(--accent-2)); }
 
-    @media (max-width: 900px) {
-      .hero { grid-template-columns: 1fr; text-align: center; }
-      .card { grid-column: span 6; }
-    }
-    @media (max-width: 640px) {
-      .nav-links { display: none; }
-      .card { grid-column: span 12; }
-    }
-  </style>
+.certificates { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:22px; }
+.certificates img { width:100%; border-radius:16px; box-shadow:var(--shadow); transition: transform .3s; }
+.certificates img:hover { transform:scale(1.05); }
+
+footer { text-align:center; padding:28px; color:var(--muted); border-top:1px solid var(--border); margin-top:40px; }
+
+@media(max-width:1000px){ .hero{grid-template-columns:1fr; text-align:center;} .card{grid-column:span 6;} }
+@media(max-width:640px){ .nav-links{display:none;} .card{grid-column:span 12;} .hero-aside img{width:220px;height:220px;} }
+</style>
 </head>
-<body>
-  <!-- Particles background -->
-  <canvas id="particles"></canvas>
+<body class="light">
 
-  <header>
-    <div class="container nav">
-      <div class="brand">Zufan<span style="color:var(--accent)">.</span>Alemu</div>
-      <nav class="nav-links">
-        <a href="#about">About</a>
-        <a href="#skills">Skills</a>
-        <a href="#certs">Certificates</a>
-        <a href="#contact">Contact</a>
-        <a id="themeToggle" class="btn" href="#">🌙</a>
-      </nav>
+<header>
+  <div class="container nav">
+    <div class="brand">Zufan<span style="color:var(--accent)">.</span>Alemu</div>
+    <nav class="nav-links">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#certs">Certificates</a>
+      <a href="#contact">Contact</a>
+      <a id="themeToggle" class="btn" href="#">🌙</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <section class="hero">
+    <div class="hero-card">
+      <span class="kicker">Hello, I'm</span>
+      <h1>Zufan Alemu</h1>
+      <p class="subtitle">Computer Science Student @ Jimma University • Certified Graphic Designer</p>
+      <div class="badge-row">
+        <span class="badge">Frontend & UI</span>
+        <span class="badge">Brand & Visual Design</span>
+        <span class="badge">Problem Solving</span>
+      </div>
+      <div class="hero-actions">
+        <a class="btn-primary" href="#contact">Contact Me</a>
+        <a class="btn-ghost" href="#certs">View Certificates</a>
+      </div>
     </div>
-  </header>
+    <aside class="hero-aside">
+      <img src="zufan1.jpg" alt="Zufan Alemu portrait">
+    </aside>
+  </section>
 
-  <main class="container">
-    <!-- Hero -->
-    <section class="hero">
-      <div class="hero-card">
-        <span class="kicker">Hello, I'm</span>
-        <h1>Zufan Alemu</h1>
-        <p class="subtitle">Computer Science Student @ Jimma University • Certified Graphic Designer</p>
-        <div class="badge-row">
-          <span class="badge">Frontend & UI</span>
-          <span class="badge">Brand & Visual Design</span>
-          <span class="badge">Problem Solving</span>
-        </div>
-        <div class="hero-actions">
-          <a class="btn-primary" href="#contact">Contact Me</a>
-          <a class="btn-ghost" href="#certs">View Certificates</a>
-        </div>
+  <section id="about" class="section">
+    <h2>About Me</h2>
+    <p>I'm a Computer Science student at <strong>Jimma University</strong> with a passion for merging technology and design. I enjoy building clean, usable interfaces and exploring problem-solving through software development and creative design.</p>
+  </section>
+
+  <section id="skills" class="section">
+    <h2>Skills</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Programming</h3>
+        <p class="muted">HTML, CSS, JavaScript, Python, C++</p>
+        <div class="bar"><span style="width:70%"></span></div>
       </div>
-      <aside class="hero-aside">
-        <img src="zufan1.jpg" alt="Zufan Alemu portrait">
-      </aside>
-    </section>
-
-    <!-- About -->
-    <section id="about" class="section">
-      <h2>About Me</h2>
-      <p class="muted" style="max-width:70ch;">
-        I'm a Computer Science student at <strong>Jimma University</strong> with a passion for merging
-        technology and design. I enjoy building clean, usable interfaces and exploring 
-        problem-solving through software development and creative design.
-      </p>
-    </section>
-
-    <!-- Skills -->
-    <section id="skills" class="section">
-      <h2>Skills</h2>
-      <div class="grid">
-        <div class="card">
-          <h3>Programming</h3>
-          <p class="muted">HTML, CSS, JS, Python, C++</p>
-          <div class="bar"><span style="width:70%"></span></div>
-        </div>
-        <div class="card">
-          <h3>Design</h3>
-          <p class="muted">Photoshop, Illustrator, Figma, UI/UX</p>
-          <div class="bar"><span style="width:80%"></span></div>
-        </div>
-        <div class="card">
-          <h3>Soft Skills</h3>
-          <ul class="muted" style="margin:0; padding-left:18px;">
-            <li>Teamwork</li><li>Problem Solving</li><li>Time Management</li>
-          </ul>
-        </div>
+      <div class="card">
+        <h3>Design</h3>
+        <p class="muted">Photoshop, Illustrator, Figma, UI/UX</p>
+        <div class="bar"><span style="width:80%"></span></div>
       </div>
-    </section>
-
-    <!-- Certificates -->
-    <section id="certs" class="section">
-      <h2>Certificates</h2>
-      <div class="certificates">
-        <img src="Graphic design certificate.png" alt="Graphic Design Certificate">
-        <img src="Udacity AD.png" alt="Udacity Advanced Certificate">
-        <img src="udacity PF.jpeg" alt="Programming Fundamentals Certificate">
-        <img src="set goals to manage your time.jpeg" alt="Time Management Certificate">
+      <div class="card">
+        <h3>Soft Skills</h3>
+        <ul class="muted" style="margin:0; padding-left:18px;">
+          <li>Teamwork</li>
+          <li>Problem Solving</li>
+          <li>Time Management</li>
+        </ul>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Contact -->
-    <section id="contact" class="section">
-      <h2>Contact</h2>
-      <div class="grid">
-        <div class="card" style="grid-column:span 6;">
-          <h3>Email</h3>
-          <p><a href="mailto:zufanalemu26@gmail.com">zufanalemu26@gmail.com</a></p>
-        </div>
-        <div class="card" style="grid-column:span 6;">
-          <h3>LinkedIn</h3>
-          <p><a href="https://www.linkedin.com/in/zufanalemu" target="_blank">linkedin.com/in/zufanalemu</a></p>
-        </div>
+  <section id="certs" class="section">
+    <h2>Certificates</h2>
+    <div class="certificates">
+      <img src="Graphic design certificate.png" alt="Graphic Design Certificate">
+      <img src="Udacity AD.png" alt="Udacity Advanced Certificate">
+      <img src="udacity PF.jpeg" alt="Programming Fundamentals Certificate">
+      <img src="set goals to manage your time.jpeg" alt="Time Management Certificate">
+    </div>
+  </section>
+
+  <section id="contact" class="section">
+    <h2>Contact</h2>
+    <div class="grid">
+      <div class="card" style="grid-column:span 6;">
+        <h3>Email</h3>
+        <p><a href="mailto:zufanalemu26@gmail.com">zufanalemu26@gmail.com</a></p>
       </div>
-    </section>
-  </main>
+      <div class="card" style="grid-column:span 6;">
+        <h3>LinkedIn</h3>
+        <p><a href="https://www.linkedin.com/in/zufanalemu" target="_blank">linkedin.com/in/zufanalemu</a></p>
+      </div>
+    </div>
+  </section>
+</main>
 
-  <footer>
-    © <span id="year"></span> Zufan Alemu. All rights reserved.
-  </footer>
+<footer>
+  © <span id="year"></span> Zufan Alemu. All rights reserved.
+</footer>
 
-  <!-- Scripts -->
-  <script>
-    // Theme toggle
-    const root = document.documentElement;
-    const toggle = document.getElementById('themeToggle');
-    function applyTheme(mode) {
-      if(mode==='light') root.classList.add('light'); else root.classList.remove('light');
-      toggle.textContent = mode==='light' ? '🌙' : '☀️';
-      localStorage.setItem('theme', mode);
-    }
-    applyTheme(localStorage.getItem('theme') || 'dark');
-    toggle.addEventListener('click', e=>{
-      e.preventDefault();
-      applyTheme(root.classList.contains('light') ? 'dark':'light');
-    });
-    document.getElementById('year').textContent = new Date().getFullYear();
+<script>
+const root = document.body;
+const toggle = document.getElementById('themeToggle');
+function applyTheme(mode){
+  if(mode==='dark') root.classList.add('dark'); else root.classList.remove('dark');
+  toggle.textContent = mode==='dark' ? '☀️':'🌙';
+  localStorage.setItem('theme',mode);
+}
+applyTheme(localStorage.getItem('theme')||'light');
+toggle.addEventListener('click',e=>{
+  e.preventDefault();
+  applyTheme(root.classList.contains('dark')?'light':'dark');
+});
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
 
-    // Particle background
-    const canvas=document.getElementById("particles");
-    const ctx=canvas.getContext("2d");
-    let w,h,particles=[];
-    function resize(){ w=canvas.width=window.innerWidth; h=canvas.height=window.innerHeight; }
-    window.addEventListener("resize",resize); resize();
-    class Particle {
-      constructor(){ this.x=Math.random()*w; this.y=Math.random()*h; this.vx=(Math.random()-.5)*0.5; this.vy=(Math.random()-.5)*0.5; this.size=Math.random()*2+1; }
-      move(){ this.x+=this.vx; this.y+=this.vy; if(this.x<0||this.x>w) this.vx*=-1; if(this.y<0||this.y>h) this.vy*=-1; }
-      draw(){ ctx.beginPath(); ctx.arc(this.x,this.y,this.size,0,Math.PI*2); ctx.fillStyle="rgba(255,255,255,0.5)"; ctx.fill(); }
-    }
-    for(let i=0;i<80;i++) particles.push(new Particle());
-    function animate(){
-      ctx.clearRect(0,0,w,h);
-      particles.forEach(p=>{ p.move(); p.draw(); });
-      requestAnimationFrame(animate);
-    }
-    animate();
-  </script>
 </body>
 </html>
