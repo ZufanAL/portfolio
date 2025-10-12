@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zufan Alemu — Creative Portfolio</title>
+    <title>Zufan Alemu — Dynamic Portfolio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" type="image/jpeg" href="portfolio.jpeg">
     <style>
@@ -51,6 +51,40 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
+        }
+
+        /* Loading Animation */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--black);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        .loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader-spinner {
+            width: 80px;
+            height: 80px;
+            border: 5px solid rgba(255, 255, 255, 0.1);
+            border-top: 5px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         /* Header & Navigation */
@@ -147,6 +181,54 @@
 
         .theme-toggle:hover {
             transform: scale(1.1);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            height: 100vh;
+            background: var(--dark-gray);
+            z-index: 1001;
+            transition: var(--transition);
+            padding: 80px 30px 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 1.2rem;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .mobile-menu-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
         }
 
         /* Hero Section */
@@ -360,6 +442,14 @@
         /* Sections */
         section {
             padding: 100px 0;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .section-title {
@@ -416,6 +506,13 @@
             border-left: 4px solid var(--primary);
             transition: var(--transition);
             color: var(--white);
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .highlight-card.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .highlight-card:hover {
@@ -449,6 +546,13 @@
             transition: var(--transition);
             border-top: 4px solid var(--primary);
             color: var(--white);
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .skill-category.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .skill-category:hover {
@@ -518,6 +622,13 @@
             transition: var(--transition);
             position: relative;
             color: var(--white);
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .certificate-card.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .certificate-card:hover {
@@ -582,6 +693,13 @@
             gap: 15px;
             transition: var(--transition);
             color: var(--white);
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+
+        .contact-card.visible {
+            opacity: 1;
+            transform: translateX(0);
         }
 
         .contact-card:hover {
@@ -604,6 +722,13 @@
             background: var(--dark-gray);
             padding: 30px;
             border-radius: var(--radius);
+            opacity: 0;
+            transform: translateX(20px);
+        }
+
+        .contact-form.visible {
+            opacity: 1;
+            transform: translateX(0);
         }
 
         .form-group {
@@ -687,6 +812,56 @@
             width: 100%;
         }
 
+        /* Toast Notifications */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--dark-gray);
+            color: var(--white);
+            padding: 15px 25px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-dark);
+            z-index: 1002;
+            transform: translateX(150%);
+            transition: transform 0.3s ease;
+            border-left: 4px solid var(--primary);
+        }
+
+        .toast.show {
+            transform: translateX(0);
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--gradient);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: var(--shadow);
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 1000;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px);
+        }
+
         /* Responsive Design */
         @media (max-width: 992px) {
             .hero-content, .about-content, .contact-container {
@@ -705,13 +880,17 @@
             .hero-title {
                 font-size: 2.8rem;
             }
-        }
 
-        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
             .nav-links {
                 display: none;
             }
-            
+        }
+
+        @media (max-width: 768px) {
             .hero-title {
                 font-size: 2.2rem;
             }
@@ -767,6 +946,11 @@
     </style>
 </head>
 <body>
+    <!-- Loading Screen -->
+    <div class="loader" id="loader">
+        <div class="loader-spinner"></div>
+    </div>
+
     <!-- Header -->
     <header>
         <div class="container nav-container">
@@ -782,8 +966,22 @@
             <button class="theme-toggle">
                 <i class="fas fa-moon"></i>
             </button>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
     </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-menu-close">
+            <i class="fas fa-times"></i>
+        </button>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#certificates">Certificates</a>
+        <a href="#contact">Contact</a>
+    </div>
 
     <!-- Hero Section -->
     <section class="hero">
@@ -1055,18 +1253,18 @@
                     </div>
                 </div>
                 <div class="contact-form">
-                    <form>
+                    <form id="contactForm">
                         <div class="form-group">
                             <label for="name">Your Name</label>
-                            <input type="text" id="name" class="form-control" placeholder="Enter your name">
+                            <input type="text" id="name" class="form-control" placeholder="Enter your name" required>
                         </div>
                         <div class="form-group">
                             <label for="email">Your Email</label>
-                            <input type="email" id="email" class="form-control" placeholder="Enter your email">
+                            <input type="email" id="email" class="form-control" placeholder="Enter your email" required>
                         </div>
                         <div class="form-group">
                             <label for="message">Your Message</label>
-                            <textarea id="message" class="form-control" placeholder="Enter your message"></textarea>
+                            <textarea id="message" class="form-control" placeholder="Enter your message" required></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary" style="width: 100%;">
                             <i class="fas fa-paper-plane"></i> Send Message
@@ -1103,65 +1301,307 @@
         </div>
     </footer>
 
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"></div>
+
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
     <script>
-        // Set current year in footer
-        document.getElementById('year').textContent = new Date().getFullYear();
-        
-        // Header scroll effect
-        window.addEventListener('scroll', function() {
-            const header = document.querySelector('header');
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
+        // Portfolio Data (Dynamic Content)
+        const portfolioData = {
+            hero: {
+                badge: "Hello, I'm",
+                name: "Zufan Alemu",
+                subtitle: "Computer Science Student @ Jimma University • Certified Graphic Designer",
+                badges: ["Frontend & UI", "Brand & Visual Design", "Problem Solving"]
+            },
+            about: {
+                text: [
+                    "I'm a Computer Science student at <strong>Jimma University</strong> with a passion for merging technology and design. I enjoy building clean, usable interfaces and exploring problem-solving through software development and creative design.",
+                    "My journey in tech started with graphic design, which taught me the importance of aesthetics and user experience. This foundation helps me create digital solutions that are not only functional but also visually appealing."
+                ],
+                highlights: [
+                    {
+                        icon: "fas fa-palette",
+                        title: "Creative Design",
+                        description: "Blending aesthetics with functionality"
+                    },
+                    {
+                        icon: "fas fa-code",
+                        title: "Clean Code",
+                        description: "Writing efficient and maintainable code"
+                    }
+                ]
+            },
+            skills: {
+                programming: [
+                    { name: "HTML/CSS", percentage: 90 },
+                    { name: "JavaScript", percentage: 80 },
+                    { name: "Python", percentage: 75 },
+                    { name: "C++", percentage: 70 }
+                ],
+                design: [
+                    { name: "UI/UX Design", percentage: 85 },
+                    { name: "Adobe Photoshop", percentage: 90 },
+                    { name: "Figma", percentage: 80 },
+                    { name: "Illustrator", percentage: 75 }
+                ],
+                soft: [
+                    { name: "Problem Solving", percentage: 95 },
+                    { name: "Teamwork", percentage: 90 },
+                    { name: "Time Management", percentage: 85 },
+                    { name: "Communication", percentage: 88 }
+                ]
+            },
+            certificates: [
+                {
+                    image: "set goals to manage your time.jpeg",
+                    title: "Time Management Certificate",
+                    description: "Effective strategies for productivity and time optimization"
+                },
+                {
+                    image: "Udacity AD.png",
+                    title: "Udacity Advanced Certificate",
+                    description: "Specialized training in advanced programming concepts"
+                },
+                {
+                    image: "udacity PF.jpeg",
+                    title: "Programming Fundamentals",
+                    description: "Comprehensive course covering core programming concepts"
+                },
+                {
+                    image: "Graphic design certificate.png",
+                    title: "Graphic Design Certificate",
+                    description: "Advanced certification in visual design principles and tools"
+                }
+            ],
+            contact: {
+                email: "zufanalemu26@gmail.com",
+                linkedin: "https://www.linkedin.com/in/zufanalemu",
+                telegram: "https://t.me/throneAL"
             }
-        });
-        
-        // Animate skill bars when they come into view
-        const skillBars = document.querySelectorAll('.skill-progress');
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const width = entry.target.getAttribute('data-width');
-                    entry.target.style.width = width + '%';
+        };
+
+        // DOM Elements
+        const loader = document.getElementById('loader');
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileMenuClose = document.querySelector('.mobile-menu-close');
+        const themeToggle = document.querySelector('.theme-toggle');
+        const contactForm = document.getElementById('contactForm');
+        const toast = document.getElementById('toast');
+        const backToTop = document.getElementById('backToTop');
+        const sections = document.querySelectorAll('section');
+        const highlightCards = document.querySelectorAll('.highlight-card');
+        const skillCategories = document.querySelectorAll('.skill-category');
+        const certificateCards = document.querySelectorAll('.certificate-card');
+        const contactCards = document.querySelectorAll('.contact-card');
+        const contactFormElement = document.querySelector('.contact-form');
+
+        // Initialize the portfolio
+        function initPortfolio() {
+            // Set current year in footer
+            document.getElementById('year').textContent = new Date().getFullYear();
+            
+            // Hide loader after page loads
+            window.addEventListener('load', () => {
+                setTimeout(() => {
+                    loader.classList.add('hidden');
+                }, 1000);
+            });
+
+            // Mobile menu functionality
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.add('active');
+            });
+
+            mobileMenuClose.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+            });
+
+            // Close mobile menu when clicking on a link
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.remove('active');
+                });
+            });
+
+            // Theme toggle functionality
+            themeToggle.addEventListener('click', () => {
+                document.body.classList.toggle('light-mode');
+                
+                if (document.body.classList.contains('light-mode')) {
+                    themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+                    localStorage.setItem('theme', 'dark');
                 }
             });
-        }, { threshold: 0.5 });
-        
-        skillBars.forEach(bar => {
-            observer.observe(bar);
-        });
-        
-        // Theme toggle functionality
-        const themeToggle = document.querySelector('.theme-toggle');
-        themeToggle.addEventListener('click', function() {
-            document.body.classList.toggle('light-mode');
-            
-            if (document.body.classList.contains('light-mode')) {
+
+            // Load saved theme
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'light') {
+                document.body.classList.add('light-mode');
                 themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-            } else {
-                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
             }
-        });
-        
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+
+            // Header scroll effect
+            window.addEventListener('scroll', () => {
+                const header = document.querySelector('header');
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+
+                // Show/hide back to top button
+                if (window.scrollY > 500) {
+                    backToTop.classList.add('visible');
+                } else {
+                    backToTop.classList.remove('visible');
+                }
+
+                // Animate sections on scroll
+                animateOnScroll();
+            });
+
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Contact form submission
+            contactForm.addEventListener('submit', (e) => {
                 e.preventDefault();
                 
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
+                // Get form data
+                const formData = new FormData(contactForm);
+                const name = formData.get('name');
+                const email = formData.get('email');
+                const message = formData.get('message');
                 
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
+                // Simulate form submission
+                showToast('Message sent successfully!', 'success');
+                
+                // Reset form
+                contactForm.reset();
+            });
+
+            // Animate skill bars when they come into view
+            const skillBars = document.querySelectorAll('.skill-progress');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const width = entry.target.getAttribute('data-width');
+                        entry.target.style.width = width + '%';
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            skillBars.forEach(bar => {
+                observer.observe(bar);
+            });
+
+            // Initialize animations
+            animateOnScroll();
+        }
+
+        // Show toast notification
+        function showToast(message, type = 'info') {
+            toast.textContent = message;
+            toast.classList.add('show');
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // Animate elements on scroll
+        function animateOnScroll() {
+            // Animate sections
+            sections.forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+                const sectionBottom = section.getBoundingClientRect().bottom;
+                
+                if (sectionTop < window.innerHeight - 100 && sectionBottom > 0) {
+                    section.classList.add('visible');
                 }
             });
-        });
+
+            // Animate highlight cards
+            highlightCards.forEach((card, index) => {
+                const cardTop = card.getBoundingClientRect().top;
+                
+                if (cardTop < window.innerHeight - 100) {
+                    setTimeout(() => {
+                        card.classList.add('visible');
+                    }, index * 200);
+                }
+            });
+
+            // Animate skill categories
+            skillCategories.forEach((category, index) => {
+                const categoryTop = category.getBoundingClientRect().top;
+                
+                if (categoryTop < window.innerHeight - 100) {
+                    setTimeout(() => {
+                        category.classList.add('visible');
+                    }, index * 200);
+                }
+            });
+
+            // Animate certificate cards
+            certificateCards.forEach((card, index) => {
+                const cardTop = card.getBoundingClientRect().top;
+                
+                if (cardTop < window.innerHeight - 100) {
+                    setTimeout(() => {
+                        card.classList.add('visible');
+                    }, index * 200);
+                }
+            });
+
+            // Animate contact cards
+            contactCards.forEach((card, index) => {
+                const cardTop = card.getBoundingClientRect().top;
+                
+                if (cardTop < window.innerHeight - 100) {
+                    setTimeout(() => {
+                        card.classList.add('visible');
+                    }, index * 200);
+                }
+            });
+
+            // Animate contact form
+            const formTop = contactFormElement.getBoundingClientRect().top;
+            
+            if (formTop < window.innerHeight - 100) {
+                setTimeout(() => {
+                    contactFormElement.classList.add('visible');
+                }, 600);
+            }
+        }
+
+        // Initialize the portfolio when DOM is loaded
+        document.addEventListener('DOMContentLoaded', initPortfolio);
     </script>
 </body>
 </html>
