@@ -608,6 +608,125 @@
             transition: width 1.5s ease;
         }
 
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background: var(--dark-gray);
+            border-radius: var(--radius);
+            overflow: hidden;
+            transition: var(--transition);
+            position: relative;
+            color: var(--white);
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .project-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-dark);
+        }
+
+        .project-img {
+            height: 200px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .project-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .project-card:hover .project-img img {
+            transform: scale(1.05);
+        }
+
+        .project-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .project-card:hover .project-overlay {
+            opacity: 1;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .project-link {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: var(--gradient);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .project-link:hover {
+            transform: scale(1.1);
+        }
+
+        .project-content {
+            padding: 20px;
+        }
+
+        .project-content h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--white);
+        }
+
+        .project-content p {
+            opacity: 0.8;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .project-tag {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--primary-light);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+
         /* Certificates Section */
         .certificates-grid {
             display: grid;
@@ -960,6 +1079,7 @@
             <nav class="nav-links">
                 <a href="#about">About</a>
                 <a href="#skills">Skills</a>
+                <a href="#projects">Projects</a>
                 <a href="#certificates">Certificates</a>
                 <a href="#contact">Contact</a>
             </nav>
@@ -979,6 +1099,7 @@
         </button>
         <a href="#about">About</a>
         <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
         <a href="#certificates">Certificates</a>
         <a href="#contact">Contact</a>
     </div>
@@ -994,8 +1115,8 @@
                     <a href="#contact" class="btn btn-primary">
                         <i class="fas fa-paper-plane"></i> Contact Me
                     </a>
-                    <a href="#certificates" class="btn btn-secondary">
-                        <i class="fas fa-certificate"></i> View Certificates
+                    <a href="#projects" class="btn btn-secondary">
+                        <i class="fas fa-code"></i> View Projects
                     </a>
                 </div>
             </div>
@@ -1162,6 +1283,135 @@
                         </div>
                         <div class="skill-bar">
                             <div class="skill-progress" data-width="88"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title">My Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-img">
+                        <img src="banner.jpg" alt="Website Banner Design">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="#" class="project-link">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                                <a href="#" class="project-link">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Website Banner Design</h3>
+                        <p>Modern and responsive banner designs created for various websites, focusing on visual appeal and user engagement.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Photoshop</span>
+                            <span class="project-tag">UI Design</span>
+                            <span class="project-tag">Branding</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-img">
+                        <img src="cheetah.jpg" alt="Wildlife Conservation App">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="#" class="project-link">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                                <a href="#" class="project-link">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Wildlife Conservation App</h3>
+                        <p>Interactive application designed to raise awareness about cheetah conservation with educational content and donation features.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">UI/UX</span>
+                            <span class="project-tag">JavaScript</span>
+                            <span class="project-tag">HTML/CSS</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-img">
+                        <img src="logo7.jpg" alt="Brand Identity Package">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="#" class="project-link">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                                <a href="#" class="project-link">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Brand Identity Package</h3>
+                        <p>Complete brand identity development including logo design, color palette, typography, and brand guidelines.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Logo Design</span>
+                            <span class="project-tag">Branding</span>
+                            <span class="project-tag">Illustrator</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-img">
+                        <img src="logo-Recovered-3.jpg" alt="Corporate Rebranding">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="#" class="project-link">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                                <a href="#" class="project-link">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Corporate Rebranding</h3>
+                        <p>Complete redesign of corporate identity for a tech startup, including logo modernization and brand guidelines.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Rebranding</span>
+                            <span class="project-tag">Corporate Design</span>
+                            <span class="project-tag">Adobe Suite</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-img">
+                        <img src="social-media-ads.jpg" alt="Social Media Campaign">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="#" class="project-link">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                                <a href="#" class="project-link">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Social Media Campaign</h3>
+                        <p>Series of social media advertisements and graphics for a product launch campaign across multiple platforms.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Social Media</span>
+                            <span class="project-tag">Marketing</span>
+                            <span class="project-tag">Graphic Design</span>
                         </div>
                     </div>
                 </div>
@@ -1356,6 +1606,38 @@
                     { name: "Communication", percentage: 88 }
                 ]
             },
+            projects: [
+                {
+                    image: "banner.jpg",
+                    title: "Website Banner Design",
+                    description: "Modern and responsive banner designs created for various websites, focusing on visual appeal and user engagement.",
+                    tags: ["Photoshop", "UI Design", "Branding"]
+                },
+                {
+                    image: "cheetah.jpg",
+                    title: "Wildlife Conservation App",
+                    description: "Interactive application designed to raise awareness about cheetah conservation with educational content and donation features.",
+                    tags: ["UI/UX", "JavaScript", "HTML/CSS"]
+                },
+                {
+                    image: "logo7.jpg",
+                    title: "Brand Identity Package",
+                    description: "Complete brand identity development including logo design, color palette, typography, and brand guidelines.",
+                    tags: ["Logo Design", "Branding", "Illustrator"]
+                },
+                {
+                    image: "logo-Recovered-3.jpg",
+                    title: "Corporate Rebranding",
+                    description: "Complete redesign of corporate identity for a tech startup, including logo modernization and brand guidelines.",
+                    tags: ["Rebranding", "Corporate Design", "Adobe Suite"]
+                },
+                {
+                    image: "social-media-ads.jpg",
+                    title: "Social Media Campaign",
+                    description: "Series of social media advertisements and graphics for a product launch campaign across multiple platforms.",
+                    tags: ["Social Media", "Marketing", "Graphic Design"]
+                }
+            ],
             certificates: [
                 {
                     image: "set goals to manage your time.jpeg",
@@ -1397,6 +1679,7 @@
         const sections = document.querySelectorAll('section');
         const highlightCards = document.querySelectorAll('.highlight-card');
         const skillCategories = document.querySelectorAll('.skill-category');
+        const projectCards = document.querySelectorAll('.project-card');
         const certificateCards = document.querySelectorAll('.certificate-card');
         const contactCards = document.querySelectorAll('.contact-card');
         const contactFormElement = document.querySelector('.contact-form');
@@ -1564,6 +1847,17 @@
                 if (categoryTop < window.innerHeight - 100) {
                     setTimeout(() => {
                         category.classList.add('visible');
+                    }, index * 200);
+                }
+            });
+
+            // Animate project cards
+            projectCards.forEach((card, index) => {
+                const cardTop = card.getBoundingClientRect().top;
+                
+                if (cardTop < window.innerHeight - 100) {
+                    setTimeout(() => {
+                        card.classList.add('visible');
                     }, index * 200);
                 }
             });
