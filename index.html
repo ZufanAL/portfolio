@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zufan Alemu — Dynamic Portfolio</title>
+    <title>Zufan Alemu — Frontend Developer & Graphic Designer</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" type="image/jpeg" href="portfolio.jpeg">
     <style>
@@ -296,6 +296,21 @@
             opacity: 0.8;
             margin-bottom: 30px;
             max-width: 500px;
+        }
+
+        .hero-roles {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .role-badge {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .hero-actions {
@@ -1110,7 +1125,13 @@
             <div class="hero-text">
                 <span class="hero-badge">Hello, I'm</span>
                 <h1 class="hero-title">Zufan <span>Alemu</span></h1>
-                <p class="hero-subtitle">Computer Science Student @ Jimma University • Certified Graphic Designer</p>
+                <p class="hero-subtitle">Computer Science Student @ Jimma University • Frontend Developer & Graphic Designer</p>
+                <div class="hero-roles">
+                    <span class="role-badge">Frontend Development</span>
+                    <span class="role-badge">UI/UX Design</span>
+                    <span class="role-badge">Graphic Design</span>
+                    <span class="role-badge">Creative Problem Solving</span>
+                </div>
                 <div class="hero-actions">
                     <a href="#contact" class="btn btn-primary">
                         <i class="fas fa-paper-plane"></i> Contact Me
@@ -1140,18 +1161,29 @@
             <h2 class="section-title">About Me</h2>
             <div class="about-content">
                 <div class="about-text">
-                    <p>I'm a Computer Science student at <strong>Jimma University</strong> with a passion for merging technology and design. I enjoy building clean, usable interfaces and exploring problem-solving through software development and creative design.</p>
-                    <p>My journey in tech started with graphic design, which taught me the importance of aesthetics and user experience. This foundation helps me create digital solutions that are not only functional but also visually appealing.</p>
+                    <p>I'm a Computer Science student at <strong>Jimma University</strong> with a unique blend of technical and creative expertise. I bridge the gap between code and design, creating digital experiences that are both technically robust and visually compelling.</p>
+                    <p>My journey began with graphic design, where I developed a keen eye for aesthetics, typography, and visual communication. This foundation naturally evolved into frontend development, where I combine my design sensibilities with technical skills to build responsive, user-friendly web applications.</p>
+                    <p>What sets me apart is my ability to understand both the visual and functional aspects of digital products. I don't just write code—I create experiences that are intuitive, accessible, and beautiful.</p>
                     <div class="about-highlights">
                         <div class="highlight-card">
                             <i class="fas fa-palette"></i>
-                            <h3>Creative Design</h3>
-                            <p>Blending aesthetics with functionality</p>
+                            <h3>Visual Design</h3>
+                            <p>Creating compelling visuals that communicate effectively</p>
                         </div>
                         <div class="highlight-card">
                             <i class="fas fa-code"></i>
-                            <h3>Clean Code</h3>
-                            <p>Writing efficient and maintainable code</p>
+                            <h3>Frontend Development</h3>
+                            <p>Building responsive, performant web applications</p>
+                        </div>
+                        <div class="highlight-card">
+                            <i class="fas fa-magic"></i>
+                            <h3>UI/UX Design</h3>
+                            <p>Crafting intuitive user experiences with thoughtful interfaces</p>
+                        </div>
+                        <div class="highlight-card">
+                            <i class="fas fa-lightbulb"></i>
+                            <h3>Problem Solving</h3>
+                            <p>Finding creative solutions to complex challenges</p>
                         </div>
                     </div>
                 </div>
@@ -1170,7 +1202,7 @@
             <h2 class="section-title">My Skills</h2>
             <div class="skills-container">
                 <div class="skill-category">
-                    <h3><i class="fas fa-laptop-code"></i> Programming</h3>
+                    <h3><i class="fas fa-laptop-code"></i> Frontend Development</h3>
                     <div class="skill-item">
                         <div class="skill-header">
                             <span class="skill-name">HTML/CSS</span>
@@ -1191,7 +1223,7 @@
                     </div>
                     <div class="skill-item">
                         <div class="skill-header">
-                            <span class="skill-name">Python</span>
+                            <span class="skill-name">React</span>
                             <span class="skill-percentage">75%</span>
                         </div>
                         <div class="skill-bar">
@@ -1200,16 +1232,16 @@
                     </div>
                     <div class="skill-item">
                         <div class="skill-header">
-                            <span class="skill-name">C++</span>
-                            <span class="skill-percentage">70%</span>
+                            <span class="skill-name">Responsive Design</span>
+                            <span class="skill-percentage">85%</span>
                         </div>
                         <div class="skill-bar">
-                            <div class="skill-progress" data-width="70"></div>
+                            <div class="skill-progress" data-width="85"></div>
                         </div>
                     </div>
                 </div>
                 <div class="skill-category">
-                    <h3><i class="fas fa-paint-brush"></i> Design</h3>
+                    <h3><i class="fas fa-paint-brush"></i> Design & Creative</h3>
                     <div class="skill-item">
                         <div class="skill-header">
                             <span class="skill-name">UI/UX Design</span>
@@ -1532,7 +1564,7 @@
                 <a href="#" class="logo">
                     <i class="fas fa-code"></i>Zufan.A
                 </a>
-                <p>Computer Science Student & Creative Designer</p>
+                <p>Frontend Developer & Creative Designer</p>
                 <div class="social-links">
                     <a href="mailto:zufanalemu26@gmail.com" class="social-link">
                         <i class="fas fa-envelope"></i>
@@ -1565,33 +1597,45 @@
             hero: {
                 badge: "Hello, I'm",
                 name: "Zufan Alemu",
-                subtitle: "Computer Science Student @ Jimma University • Certified Graphic Designer",
+                subtitle: "Computer Science Student @ Jimma University • Frontend Developer & Graphic Designer",
+                roles: ["Frontend Development", "UI/UX Design", "Graphic Design", "Creative Problem Solving"],
                 badges: ["Frontend & UI", "Brand & Visual Design", "Problem Solving"]
             },
             about: {
                 text: [
-                    "I'm a Computer Science student at <strong>Jimma University</strong> with a passion for merging technology and design. I enjoy building clean, usable interfaces and exploring problem-solving through software development and creative design.",
-                    "My journey in tech started with graphic design, which taught me the importance of aesthetics and user experience. This foundation helps me create digital solutions that are not only functional but also visually appealing."
+                    "I'm a Computer Science student at <strong>Jimma University</strong> with a unique blend of technical and creative expertise. I bridge the gap between code and design, creating digital experiences that are both technically robust and visually compelling.",
+                    "My journey began with graphic design, where I developed a keen eye for aesthetics, typography, and visual communication. This foundation naturally evolved into frontend development, where I combine my design sensibilities with technical skills to build responsive, user-friendly web applications.",
+                    "What sets me apart is my ability to understand both the visual and functional aspects of digital products. I don't just write code—I create experiences that are intuitive, accessible, and beautiful."
                 ],
                 highlights: [
                     {
                         icon: "fas fa-palette",
-                        title: "Creative Design",
-                        description: "Blending aesthetics with functionality"
+                        title: "Visual Design",
+                        description: "Creating compelling visuals that communicate effectively"
                     },
                     {
                         icon: "fas fa-code",
-                        title: "Clean Code",
-                        description: "Writing efficient and maintainable code"
+                        title: "Frontend Development",
+                        description: "Building responsive, performant web applications"
+                    },
+                    {
+                        icon: "fas fa-magic",
+                        title: "UI/UX Design",
+                        description: "Crafting intuitive user experiences with thoughtful interfaces"
+                    },
+                    {
+                        icon: "fas fa-lightbulb",
+                        title: "Problem Solving",
+                        description: "Finding creative solutions to complex challenges"
                     }
                 ]
             },
             skills: {
-                programming: [
+                frontend: [
                     { name: "HTML/CSS", percentage: 90 },
                     { name: "JavaScript", percentage: 80 },
-                    { name: "Python", percentage: 75 },
-                    { name: "C++", percentage: 70 }
+                    { name: "React", percentage: 75 },
+                    { name: "Responsive Design", percentage: 85 }
                 ],
                 design: [
                     { name: "UI/UX Design", percentage: 85 },
